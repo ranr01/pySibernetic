@@ -4,6 +4,8 @@
  * Copyright (c) 2011, 2013 OpenWorm.
  * http://openworm.org
  *
+ * Copyright (c) 2017, Ran Rubin.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the MIT License
  * which accompanies this distribution, and is available at
@@ -11,6 +13,7 @@
  *
  * Contributors:
  *     	OpenWorm - http://openworm.org/people.html
+ *      Ran Rubin
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +56,7 @@ public:
 	 *  cause new information updating every time step in
 	 *  owPhysicsFluidSimulator::simulationStep() method.
 	 *
-	 *  @return position_cpp
+	 *  @return position_cpps
 	 */
 	float * getPosition_cpp() const { return position_cpp; };
 	/** Getter for velocity_cpp buffer
@@ -121,13 +124,13 @@ public:
         void pushMuscleActivity2openCLsolver(){
             ocl_solver->updateMuscleActivityData(muscle_activation_signal_cpp, config);
         }
-        
-        int position_cpp_size, velocity_cpp_size, density_cpp_size, 
+
+        int position_cpp_size, velocity_cpp_size, density_cpp_size,
             particleIndex_cpp_size, elasticConnectionsData_cpp_size,
             membraneData_cpp_size, muscle_activation_signal_cpp_size;
-        
+
         owHelper * helper;
-        
+
 private:
 	owOpenCLSolver * ocl_solver;
 	float * position_cpp;				// everywhere in the code %variableName%_cpp means that we create

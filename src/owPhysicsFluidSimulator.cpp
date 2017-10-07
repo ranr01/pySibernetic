@@ -4,6 +4,8 @@
  * Copyright (c) 2011, 2013 OpenWorm.
  * http://openworm.org
  *
+ * Copyright (c) 2017, Ran Rubin.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the MIT License
  * which accompanies this distribution, and is available at
@@ -11,6 +13,7 @@
  *
  * Contributors:
  *     	OpenWorm - http://openworm.org/people.html
+ *      Ran Rubin
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -72,33 +75,33 @@ void owPhysicsFluidSimulator::init_config(){
     // LOAD FROM FILE
     owHelper::preLoadConfiguration(config);
     config->initGridCells();
-    
+
     position_cpp_size = 4 * config->getParticleCount();
     position_cpp = new float[position_cpp_size];
-    
+
     velocity_cpp_size = 4 * config->getParticleCount();
     velocity_cpp = new float[velocity_cpp_size];
-    
+
     muscle_activation_signal_cpp_size = config->MUSCLE_COUNT;
     muscle_activation_signal_cpp = new float[muscle_activation_signal_cpp_size];
-    
+
     elasticConnectionsData_cpp_size = 4 * config->numOfElasticP * MAX_NEIGHBOR_COUNT;
     if (config->numOfElasticP != 0)
       elasticConnectionsData_cpp = new float[elasticConnectionsData_cpp_size];
-    
+
     membraneData_cpp_size = config->numOfMembranes * 3;
     if (config->numOfMembranes <= 0)
       membraneData_cpp = NULL;
     else
       membraneData_cpp = new int[membraneData_cpp_size];
-    
+
     if (config->numOfElasticP <= 0)
       particleMembranesList_cpp = NULL;
     else
       particleMembranesList_cpp =
           new int[config->numOfElasticP *
                   MAX_MEMBRANES_INCLUDING_SAME_PARTICLE];
-    
+
     for (unsigned int i = 0; i < config->MUSCLE_COUNT; ++i) {
       muscle_activation_signal_cpp[i] = 0.f;
     }
@@ -106,16 +109,16 @@ void owPhysicsFluidSimulator::init_config(){
     // The buffers listed below are only for usability and debug
     density_cpp_size = 1 * config->getParticleCount();
     density_cpp = new float[density_cpp_size];
-    
+
     particleIndex_cpp_size = config->getParticleCount() * 2;
     particleIndex_cpp = new unsigned int[particleIndex_cpp_size];
-    
+
     // LOAD FROM FILE
     owHelper::loadConfiguration(
         position_cpp, velocity_cpp, elasticConnectionsData_cpp,
         membraneData_cpp, particleMembranesList_cpp,
         config); // Load configuration from file to buffer
-    
+
     if (config->numOfElasticP != 0) {
       ocl_solver = new owOpenCLSolver(
           position_cpp, velocity_cpp, config, elasticConnectionsData_cpp,
@@ -124,8 +127,8 @@ void owPhysicsFluidSimulator::init_config(){
     } else
       ocl_solver =
           new owOpenCLSolver(position_cpp, velocity_cpp,config); // Create new openCLsolver instance
-  
-    
+
+
 }
 
 /** Reset simulation
@@ -265,7 +268,7 @@ double owPhysicsFluidSimulator::simulationStep(const bool load_to) {
     muscle_activation_signal_cpp[i] *= correction_coeff;
   }
   /* ****************************************** */
-  
+
   //config->updateNeuronSimulation(muscle_activation_signal_cpp);
 
   //

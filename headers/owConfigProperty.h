@@ -4,6 +4,8 @@
  * Copyright (c) 2011, 2013 OpenWorm.
  * http://openworm.org
  *
+ * Copyright (c) 2017, Ran Rubin.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the MIT License
  * which accompanies this distribution, and is available at
@@ -11,6 +13,7 @@
  *
  * Contributors:
  *     	OpenWorm - http://openworm.org/people.html
+ *      Ran Rubin
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -76,7 +79,7 @@ public:
 	void setTimeStep(float value){
             if (value <=0.)
                 throw std::runtime_error("Time step cannot be less or equal to zero");
-            
+
             this->timeStep = value;
             beta = this->timeStep*this->timeStep*mass*mass*2/(rho0*rho0);
 	}
@@ -86,17 +89,17 @@ public:
 	int getLogStep(){ return logStep; }
 	float getTimeStep() const { return this->timeStep; }
 	float getDelta() const { return delta; }
-	
+
         void setTimeLim(float value){
             if (value <0.)
                 throw std::runtime_error("Time Limit cannot be less than zero");
             timeLim=value;
-            totalNumberOfIteration = timeLim/this->timeStep; // if it equals to 0 it means that simulation will work infinitely	
+            totalNumberOfIteration = timeLim/this->timeStep; // if it equals to 0 it means that simulation will work infinitely
         }
         float getTimeLim(){
             return timeLim;
         }
-        
+
         std::string getSnapshotFileName() {
 		std::string fileName = "./configuration/snapshot/" + configFileName + "_";
 		std::stringstream ss;
@@ -164,8 +167,8 @@ public:
         std::string path;              // PATH to configuration files
 	std::string loadPath;          // PATH to load buffer files
         std::string sourceFileName;
-	
-	
+
+
 private:
 	/** Calculating delta parameter.
 	 *
@@ -227,7 +230,7 @@ private:
 	float timeLim;
 	float beta;
 	float delta;
-	
+
 	std::string configFileName;
 	std::string devFullName;
 	bool nrnSimRun; //indicates if we also ran NEURON simulation
