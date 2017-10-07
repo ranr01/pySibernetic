@@ -1,4 +1,3 @@
-### INCOMPLETE README FILE
 # pySibernetic
 
 This is a simple python binding for the [OpenWorm](https://github.com/openworm/OpenWorm) worm simulator, [Sibernetic](https://github.com/openworm/sibernetic).
@@ -24,7 +23,7 @@ The wrapped Python classes provide access to all the needed parameters and data 
 
 ## Usage
 
-For a simple example of usage see this Jupyter notebook.
+For a simple example of usage see [this](pySiberneticDemo.ipynb) Jupyter notebook.
 
 ## Directory Structure
 
