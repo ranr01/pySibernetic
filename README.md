@@ -33,3 +33,13 @@ For a simple example of usage see this Jupyter notebook.
   - headers - C++ headers. Mostly taken as is from Sibernetic with a few modification
   - src - C++ and OpenCL source files. Includes both modified Sibernetic files and Python binding files
   - pySibernetic - Python module
+
+## Build Instruction
+
+From the project's root directory run:
+~~~
+g++ -O3 -fPIC -shared -o pySibernetic/_pySibernetic.so -Iheaders -I/usr/include/python3.5m/ src/owHelper.cpp src/owOpenCLSolver.cpp src/owPhysicsFluidSimulator.cpp src/pyOwConfigProperty.cpp src/pyOwPhysicsFliudSimulator.cpp src/pySibertetic.cpp -lOpenCL
+~~~
+
+You may need to adjust the python -I directive to point the compiler to the location
+of your Pyhton.h header file
