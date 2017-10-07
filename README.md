@@ -15,7 +15,7 @@ This allows the user to control the simulation directly from Python and easily i
 
 ## Architecture
 
-The project provides the Python module pySibernetic which exposes (using [Pybind11](https://pybind11.readthedocs.io/en/stable/) the two main C++ classes of the worm simulation:
+The project provides the Python module pySibernetic which exposes (using [Pybind11](https://pybind11.readthedocs.io/en/stable/)) the two main C++ classes of the worm simulation:
 
 1. owConfigProperty - A helper class to specify the simulation's parameters
 2. owPhysicsFluidSimulator - A class that implements a single step of the worm simulation
@@ -46,3 +46,10 @@ g++ -O3 -fPIC -shared -o pySibernetic/_pySibernetic.so -Iheaders -I/usr/include/
 
 You may need to adjust the python -I directive to point the compiler to the location
 of your Pyhton.h header file
+
+### Build Dependencies:
+
+* Python 3
+* [Pybind11](https://pybind11.readthedocs.io/en/stable/) - A header library for binding C++
+code to python.
+* OpenCL headers and shared library
