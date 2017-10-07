@@ -1,4 +1,4 @@
-### INCOMPLETE README FILE 
+### INCOMPLETE README FILE
 # pySibernetic
 
 This is a simple python binding for the OpenWorm worm simulator, Sibernetic.
@@ -28,13 +28,8 @@ For a simple example of usage see this Jupyter notebook.
 
 ## Directory Structure
 
-pySibernetic
-|
---> configuration - Simulation configuration files taken from [here]
-|
---> headers - C++ headers. Mostly taken as is from Sibernetic with a few modifications
-|
---> src - C++ and OpenCL source files. Includes both modified Sibernetic files and
-Python binding files
-|
---> pySibernetic - Python module
+* pySibernetic
+  - configuration - Simulation configuration files taken from [here]
+  - headers - C++ headers. Mostly taken as is from Sibernetic with a few modification
+  - src - C++ and OpenCL source files. Includes both modified Sibernetic files and Python binding files
+  - pySibernetic - Python module
